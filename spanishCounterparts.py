@@ -24,12 +24,17 @@ def spanishSitemap(sitemapUrl):
 
     outer_elements = soup.find_all('li',{"class":"pagenav"})
 ##    print(outer_elements)
-    
+
     for elem in outer_elements:
 ##        print(elems)
+
+        #finds linked h2 tags 
+        header = find_parent_tag(elem)
         
-        heading = str(elem.h2.text)
-        print(heading)
+        if (header[1].find('urlError01') != -1):
+            print ("urlError01 detected - skipping")
+        else:
+            espLinks.append(header)
         
         li_elements = getListElements(elem)
 
@@ -48,6 +53,17 @@ def spanishSitemap(sitemapUrl):
                 if newList:
                     parent = True
                     print("<---Parent Element--->")
+                    #cleans link text of parent elements to be safe
+                    linkText = cleanParentText(linkText)
+                    try:
+                        #if parent element is found it gets added to the list
+                        linkUrl =  str(item.a.get('href'))
+                        espLinks.append([linkText,linkUrl])
+                        parent = False
+                    except:
+                        linkUrl = "CONNECTIONN ISSUE - parent element"
+                        espLinks.append([linkText,linkUrl])
+                        parent = False
             except:
                 try:
                     linkUrl =  str(item.a.get('href'))
@@ -127,7 +143,7 @@ def getListElements(soup):
 
 
 #finds the first h1  tag for a given url and returns it as a string
-def findPageTitle(url):
+def find_header_tag(url):
     source = requests.get(url).text
     soup = BeautifulSoup(source,'lxml')
 
@@ -135,23 +151,46 @@ def findPageTitle(url):
     pageTitle = pageTitle.replace("\n","").strip()
     return(str(pageTitle))
 
+#finds the first h1  tag for a given url and returns it as a string
+def find_page_title(url):
+    source = requests.get(url).text
+    soup = BeautifulSoup(source,'lxml')
+
+    pageTitle = soup.find('title').text
+    pageTitle = pageTitle.replace("\n","").strip()
+    return(str(pageTitle))
+
+
+#detects the <h2> elements and checks for a link - returns a list w/ 2 items
+def find_parent_tag(soup):
+    elem = soup
+    try:
+        headingText = str(elem.h2.text).replace("\n","").strip()
+        headingLink = str(elem.h2.a.get('href'))
+        print([headingText,headingLink])
+        return [headingText,headingLink]
+    except:
+        headingText = str(elem.h2.text).replace("\n","").strip()
+        headingLink = "urlError01: No Link within element"
+        print([headingText,headingLink])
+        return [headingText,headingLink]
 
 
 def findCounterpart(spaContent):
     #^parameter is an array, below splits first two elements and assigns them to variables
     spaTitle = str(spaContent[0])
     spaUrl = str(spaContent[1])
-
-    spaSlug = splitLink(spaUrl)
-    
-    source = requests.get(spaUrl).text
-    soup = BeautifulSoup(source,'lxml')
-
-
     #define local variables
     engUrl = None
     engSlug = None
     engTitle = None
+
+    #gets the spanish slug for this page
+    spaSlug = splitLink(spaUrl)
+
+    
+    source = requests.get(spaUrl).text
+    soup = BeautifulSoup(source,'lxml')
 
     #Tries to find the URL for the language toggle button
     try:
@@ -159,19 +198,28 @@ def findCounterpart(spaContent):
         engSlug = splitLink(str(engUrl))
     except:
         engUrl = False
-        engSlug = "Error - With Finding the English Url"
+        engSlug = "urlError02: unable to locate multilingual page toggle"
 
-    #Finds the Title from the English Page
+    #Tries to find the Title from the English Page
     try:
-        engTitle = findPageTitle(engUrl)
+        engTitle = find_header_tag(engUrl)
     except:
-        engTitle = "Error - With Finding the English Page Title"
+        try:
+            engTitle = find_page_title(engUrl)
+        except:
+            engTitle = "titleError01: - Could Not Find Page Title"
     
 
     counterpartList = [engTitle,engSlug,spaTitle,spaSlug]
     print(counterpartList)
     return counterpartList
-    
+
+
+def cleanParentText(parent):
+    elem = parent.split('\n')
+    elem = str(elem[0])
+    parentText = elem.replace("\n","").strip()
+    return parentText
 
 def splitLink(url):
     elem = str(url)
@@ -182,5 +230,5 @@ def splitLink(url):
     
 #TESTING: please comment out when not in use
 #https://maxwellford-wpml0522.dev.dealerinspire.com/es/mapa-del-sitio/
-url = input("Please paste the Sitemap URL here: ")
-spanishSitemap(url)
+##url = input("Please paste the Sitemap URL here: ")
+##spanishSitemap(url)
