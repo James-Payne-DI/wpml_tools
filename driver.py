@@ -19,19 +19,26 @@ devLabel.grid(row=0,column=0,sticky=W,columnspan=2,pady=5)
 #devsite input box
 devlink = Entry(root, width=50, borderwidth=1)
 devlink.grid(row=1,column=0,columnspan=3,padx=5,pady=4)
-        
+
+global statusLabel   
+statusLabel = Label(root, text="Click 'Run Program' to begin...")
+statusLabel.grid(row=5,column=0,sticky=W,columnspan=2,padx=5,pady=(25,5))
 
 
 #just a way  to run everything without passing any parameters -  useful for tkinter
 def executeScript():
     print("Script Executing")
-
-    #used for error checkin - not needed to for program to function
-    #checkState()
-    
     url = str(devlink.get())
-    spanishCounterparts.spanishSitemap(url)
-
+    if url:
+        statusLabel.config(text="Running...")
+        #update idle tasks
+        root.update_idletasks()
+        time.sleep(1.5)
+        spanishCounterparts.spanishSitemap(url)
+    else:
+        statusLabel.config(text="Please enter a URL in the input field and try again.")
+    time.sleep(0.75)
+    statusLabel.config(text="Program Complete")
 
 
 
@@ -40,7 +47,7 @@ build_button = Button(root, text="Run Program", activeforeground='#1351d8', padx
 #quit button - exits the program
 quit_button = Button(root, text="Exit Program", width=15, height=2, pady=3,command=root.destroy)
 
-build_button.grid(row=10,column=0,columnspan=1)
+build_button.grid(row=10,column=0,sticky=W,columnspan=1,padx=5)
 quit_button.place(relx=0.7,rely=0.92)
 
 #Finally, the mainloop() method puts everything on the display,
