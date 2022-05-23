@@ -1,4 +1,5 @@
 WPML TOOL: Spanish sitemap to CSV
+------------
 - created as an easy to use GUI, one input field and two buttons, that's it!
 - takes the spanish language sitemap as an input
 ---> slug should start with /es/
@@ -8,7 +9,7 @@ WPML TOOL: Spanish sitemap to CSV
 ____________
 
 Tool Installation:
-
+------------
 Python Version: Python 3.7.3
 - Link: https://www.python.org/downloads/release/python-373/
 - Download file name: "macOS 64-bit installer"
