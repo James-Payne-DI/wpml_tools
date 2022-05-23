@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests, time, urllib3, csv, os
-
+from tkinter import filedialog
 
 def spanishSitemap(sitemapUrl):
     #clean the input
@@ -103,7 +103,15 @@ def createCSV(translationList):
         for translation in translationList:
             translation_writer.writerow(translation)
 
+    #trying to  open file dialog
+    #saveFile()
     print("Data Added to File")
+
+
+def saveFile():
+    root = Tk()
+    root.withdraw()
+    file =  filedialog.askaveasfile(defaultextension=".csv")
 
 
 #Function: pulls down sitemap and returns a soup element

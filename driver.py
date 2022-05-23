@@ -3,7 +3,7 @@ import time, spanishCounterparts
 
 root = Tk()
 root.title("Spanish Sitemap to CSV file")
-root.iconbitmap('/Users/jimmypayne/Documents/straw-hats.ico')
+root.iconbitmap(r'straw-hats.ico')
 root.geometry("480x500")
 #root.configure(bg="#1351d8")
 

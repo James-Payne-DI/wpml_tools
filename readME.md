@@ -7,7 +7,6 @@ WPML TOOL: Spanish sitemap to CSV
 
 
 ____________
-
 Tool Installation:
 ------------
 Python Version: Python 3.7.3
@@ -32,3 +31,11 @@ KNOWN ERRORS: The below errors may appear in the CSV file after the program fini
 - urlError01: issue with acquiring the Spanish URL from the /es/ sitemap
 - urlError02: unable to find the multilingual toggle CTA while on the /es/ page
 - titleError01: unable to find the English page title while on  the page
+
+
+____________
+To Do List:
+------------
+- Add progress bar to let the user know how far the program has gone
+- Add input fields to help the user save the csv file with the use of the executable
+
