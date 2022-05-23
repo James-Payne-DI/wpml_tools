@@ -14,12 +14,12 @@ Python Version: Python 3.7.3
 ____________
 Python Modules used: bs4,requests, time, urllib3, csv, os
 Terminal Commands:
-pip3 install bs4
-pip3 install requests
-pip3 install time
-pip3 install urllib3
-pip3 install csv
-pip3 install os
+- pip3 install bs4
+- pip3 install requests
+- pip3 install time
+- pip3 install urllib3
+- pip3 install csv
+- pip3 install os
 
 
 
