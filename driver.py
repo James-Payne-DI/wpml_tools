@@ -3,7 +3,8 @@ import time, spanishCounterparts
 
 root = Tk()
 root.title("Spanish Sitemap to CSV file")
-root.geometry("480x700")
+root.iconbitmap('/Users/jimmypayne/Documents/straw-hats.ico')
+root.geometry("480x500")
 #root.configure(bg="#1351d8")
 
 def checkState():
@@ -35,10 +36,12 @@ def executeScript():
         root.update_idletasks()
         time.sleep(1.5)
         spanishCounterparts.spanishSitemap(url)
+        time.sleep(0.75)
+        statusLabel.config(text="Program Complete")
     else:
         statusLabel.config(text="Please enter a URL in the input field and try again.")
-    time.sleep(0.75)
-    statusLabel.config(text="Program Complete")
+    
+    
 
 
 
