@@ -1,8 +1,12 @@
 WPML TOOL: Spanish sitemap to CSV
 ------------
-- created as an easy to use GUI, one input field and two buttons, that's it!
-- takes the spanish language sitemap as an input
----> slug should start with /es/
+- created as an easy to use GUI, three input fields and two buttons, that's it!
+Inputs:
+- Spanish language sitemap - i.e. /es/mapa-del-sitio/
+- Name of the dealership
+- a file path for the place you want the csv file to save to
+
+Outputs:
 - outputs a CSV file that can be easily exported to other platforms
 
 

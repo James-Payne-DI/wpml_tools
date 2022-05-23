@@ -6,30 +6,26 @@ def createCSV(save_path,name_of_file,translationList):
     name_of_file = name_of_file.replace(" ","-")
     completeName = os.path.join(save_path, name_of_file+".csv")
 
-    
 
-    with open(completeName, mode='a+') as translation_list:
+    with open(completeName, mode='a+') as translation_file:
         
-        translation_writer = csv.writer(translation_list, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        translation_writer = csv.writer(translation_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
         #assigns the top level field names to the csv file
         field_names = ["English Title","English Slug","Spanish Title","Spanish Slug"]
         translation_writer.writerow(field_names)
 
         #adds all the translation arrays from the translationList array which is passed in as a parameter
-        for translation in translation_list:
+        for translation in translationList:
             translation_writer.writerow(translation)
-        #completeName.close()
+            print(translation)
+            
 
     print("Data Added to File")
 
 
-save_path = '/Users/jimmypayne/Documents/wpml_translation_files'
-name_of_file = input("What is the name of the dealership: ")
-translationList = [["English Title","English Slug","Spanish Title","Spanish Slug"],
-               ["English Title","English Slug","Spanish Title","Spanish Slug"],
-               ["English Title","English Slug","Spanish Title","Spanish Slug"],
-               ["English Title","English Slug","Spanish Title","Spanish Slug"],
-               ["English Title","English Slug","Spanish Title","Spanish Slug"]]
-
-createCSV(save_path,name_of_file,translationList)
+##save_path = '/Users/jimmypayne/Documents/wpml_translation_files'
+##name_of_file = input("What is the name of the dealership: ")
+##translationList = [['Parts Center', '/parts/', 'Autopartes', '/es/autopartes/'], ['Contact Parts', '/parts/contact-parts/', 'Contáctate con Centro de Autopartes', '/es/autopartes/contactate-con-centro-de-autopartes/'], ['Order Parts', '/parts/order-parts/', 'Pedido de Autopartes', '/es/autopartes/pedido-de-autopartes/'], ['Toyota Dealer In Houston TX', '/', 'Bienvenido a Sterling McCall Toyota', '/es/'], ['Payment Calculator', '/payment-calculator/', 'Calculadora de Pago', '/es/calculadora-de-pago/'], ['Contact Us', '/contact-us/', 'Contáctenos', '/es/contactenos/'], ['Toyota Finance & Leasing Center Houston', '/finance/', 'Financiar', '/es/financiar/'], ['Sitemap', '/sitemap/', 'Mapa del sitio', '/es/mapa-del-sitio/'], ['Toyota finance and lease offers', '/offers-incentives/', 'Ofertas e Incentivos', '/es/ofertas-e-incentivos/'], ['Toyota Service & Car Repair Center Houston', '/service/', 'Servicio', '/es/servicio/'], ['Schedule Auto Service and Maintenance | Sterling McCall Toyota', '/service/schedule-service/', 'Cita de Servicio', '/es/servicio/cita-de-servicio/'], ['Contact Service', '/service/contact-service/', 'Contactate con Centro de Servicio', '/es/servicio/contactate-con-centro-de-servicio/'], ['Vehicle Finder Service', '/vehicle-finder-service/', 'Servicio de búsqueda de vehículos', '/es/servicio-de-busqueda-de-vehiculos/'], ['About Us', '/about-us/', 'Sobre nosotros', '/es/sobre-nosotros/'], ['Leave Us A Review', '/about-us/reviews/', 'Déjanos saber tu opinión', '/es/sobre-nosotros/dejanos-saber-tu-opinion/'], ['Sterling McCall Toyota Reviews & Testimonials', '/about-us/customer-testimonials/', 'Reseñas y Testimonios de Sterling McCall Toyota', '/es/sobre-nosotros/testimoniales-de-clientes/'], ['Blog Posts Sitemap', '/blog-posts-sitemap/', 'Blog Posts', '/es/mapa-del-sitio-blog-posts/'], ['Models Sitemap', '/models-sitemap/', 'Models', '/es/mapa-del-sitio-de-modelos/'], ['Comparisons Sitemap', '/comparisons-sitemap/', 'Comparisons', '/es/mapa-del-sitio-comparaciones/'], ['New Vehicles', '/new-vehicles/', 'Vehículos Nuevos', '/es/vehiculos-nuevos/'], ['4Runner', '/new-vehicles/4runner/', '4Runner', '/es/vehiculos-nuevos/4runner/'], ['Avalon', '/new-vehicles/avalon/', 'Avalon', '/es/vehiculos-nuevos/avalon/'], ['Avalon Hybrid', '/new-vehicles/avalon-hybrid/', 'Avalon Hybrid', '/es/vehiculos-nuevos/avalon-hybrid/'], ['C-HR', '/new-vehicles/c-hr/', 'C-HR', '/es/vehiculos-nuevos/c-hr/'], ['Trucks', '/new-vehicles/trucks/', 'Camionetas', '/es/vehiculos-nuevos/camionetas/'], ['Camry', '/new-vehicles/camry/', 'Camry', '/es/vehiculos-nuevos/camry/'], ['Camry Hybrid', '/new-vehicles/camry-hybrid/', 'Camry Hybrid', '/es/vehiculos-nuevos/camry-hybrid/'], ['Corolla', '/new-vehicles/corolla/', 'Corolla', '/es/vehiculos-nuevos/corolla/'], ['Corolla Cross', '/new-vehicles/corolla-cross/', 'Corolla Cross', '/es/vehiculos-nuevos/corolla-cross/'], ['Corolla Hatchback', '/new-vehicles/corolla-hatchback/', 'Corolla Hatchback', '/es/vehiculos-nuevos/corolla-hatchback/'], ['Corolla Hybrid', '/new-vehicles/corolla-hybrid/', 'Corolla Hybrid', '/es/vehiculos-nuevos/corolla-hybrid/'], ['New Vehicle Specials', '/new-vehicles/new-vehicle-specials/', 'Especiales de Vehículos Nuevos', '/es/vehiculos-nuevos/especiales-de-vehiculos-nuevos/'], ['GR Supra', '/new-vehicles/gr-supra/', 'GR Supra', '/es/vehiculos-nuevos/gr-supra/'], ['GR86', '/new-vehicles/gr86/', 'GR86', '/es/vehiculos-nuevos/gr86/'], ['Highlander', '/new-vehicles/highlander/', 'Highlander', '/es/vehiculos-nuevos/highlander/'], ['Highlander Hybrid', '/new-vehicles/highlander-hybrid/', 'Highlander Hybrid', '/es/vehiculos-nuevos/highlander-hybrid/'], ['Hybrids / FCV', '/new-vehicles/hybrids-fcv/', 'Hybrids / FCV', '/es/vehiculos-nuevos/hybrids-fcv/'], ['Cars / Minivans', '/new-vehicles/cars-minivans/', 'Minivan y Camionetas', '/es/vehiculos-nuevos/minivan-camionetas/'], ['Prius', '/new-vehicles/prius/', 'Prius', '/es/vehiculos-nuevos/prius/'], ['Prius Prime', '/new-vehicles/prius-prime/', 'Prius Prime', '/es/vehiculos-nuevos/prius-prime/'], ['RAV4', '/new-vehicles/rav4/', 'RAV4', '/es/vehiculos-nuevos/rav4/'], ['RAV4 Hybrid', '/new-vehicles/rav4-hybrid/', 'RAV4 Hybrid', '/es/vehiculos-nuevos/rav4-hybrid/'], ['RAV4 Prime', '/new-vehicles/rav4-prime/', 'RAV4 Prime', '/es/vehiculos-nuevos/rav4-prime/'], ['Sequoia', '/new-vehicles/sequoia/', 'Sequoia', '/es/vehiculos-nuevos/sequoia/'], ['Sienna', '/new-vehicles/sienna/', 'Sienna', '/es/vehiculos-nuevos/sienna/'], ['Crossovers / SUVs / Trucks', '/new-vehicles/crossovers-suvs-trucks/', 'SUVs y Crossovers', '/es/vehiculos-nuevos/suvs-crossovers/'], ['Tacoma', '/new-vehicles/tacoma/', 'Tacoma', '/es/vehiculos-nuevos/tacoma/'], ['Tundra', '/new-vehicles/tundra/', 'Tundra', '/es/vehiculos-nuevos/tundra/'], ['Venza', '/new-vehicles/venza/', 'Venza', '/es/vehiculos-nuevos/venza/'], ['Used Vehicles', '/used-vehicles/', 'Vehículos Usados', '/es/vehiculos-usados/'], ['Pre-Owned Vehicle Specials', '/used-vehicles/pre-owned-vehicle-specials/', 'Ofertas y Especiales de Vehículos Usados', '/es/vehiculos-usados/especiales-de-vehiculos-usados/'], ['Priced Under 10k', '/used-vehicles/priced-under-10k/', 'Vehículos Menos de 10k', '/es/vehiculos-usados/precio-por-debajo-de-10k/'], ['Certified Pre-Owned Vehicles', '/used-vehicles/certified-pre-owned-vehicles/', 'Vehículos Usados Certificados', '/es/vehiculos-usados/vehiculos-usados-certificados/']]
+##
+##createCSV(save_path,name_of_file,translationList)

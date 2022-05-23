@@ -81,7 +81,8 @@ def spanishSitemap(sitemapUrl):
         translationList.append(counterparts)
 
 
-    createCSV(translationList)
+    #createCSV(translationList)
+    return translationList
         
 
 
