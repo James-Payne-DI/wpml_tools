@@ -10,6 +10,13 @@ Outputs:
 - outputs a CSV file that can be easily exported to other platforms
 
 
+
+____________
+Download Link:
+------------
+- https://drive.google.com/file/d/186MSuPua-ni6XpWpvxFgP2nj4pGr_yPz/view?usp=sharing
+
+
 ____________
 Tool Installation:
 ------------
